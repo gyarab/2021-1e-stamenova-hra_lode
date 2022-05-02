@@ -2,8 +2,10 @@ package com.example.rocnikovka;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 
@@ -70,10 +72,12 @@ public class HelloController {
                     case 4:
                         label.setText("Player 1 won! Congratulations!");
                         ((Button) event.getSource()).setText("■");
+                        resetGame(((Button) event.getSource()).getParent().getParent());
                         break;
                     case 5:
                         label.setText("Player 2 won! Congratulations!");
                         ((Button) event.getSource()).setText("■");
+                        resetGame(((Button) event.getSource()).getParent().getParent());
                         break;
                 }
             }
@@ -123,14 +127,44 @@ public class HelloController {
                     case 4:
                         label.setText("Player 1 won! Congratulations!");
                         ((Button) event.getSource()).setText("■");
+                        resetGame(((Button) event.getSource()).getParent().getParent());
                         break;
                     case 5:
                         label.setText("Player 2 won! Congratulations!");
                         ((Button) event.getSource()).setText("■");
+                        resetGame(((Button) event.getSource()).getParent().getParent());
                         break;
                 }
             }
         }
 
     }
+
+    private void resetGame(Parent parent){
+
+        HelloApplication.logics = new GameLogics();
+        for(int i = 0; i < parent.getChildrenUnmodifiable().size(); i++){
+
+            if(parent.getChildrenUnmodifiable().get(i) instanceof GridPane){
+
+                GridPane temp = (GridPane) parent.getChildrenUnmodifiable().get(i);
+
+                for (int j = 0; j < temp.getChildrenUnmodifiable().size(); j++){
+
+                    if(temp.getChildrenUnmodifiable().get(j) instanceof Button){
+
+                        ((Button)temp.getChildrenUnmodifiable().get(j)).setText("O");
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        label.setText("Player 1 please chose your ships");
+
+    }
+
 }

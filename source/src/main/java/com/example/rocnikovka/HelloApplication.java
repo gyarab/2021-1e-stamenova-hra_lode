@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         logics = new GameLogics();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 339, 700);
-        stage.setTitle("Hello!");
+        stage.setTitle("BATTLESHIP");
         stage.setScene(scene);
         stage.show();
     }
